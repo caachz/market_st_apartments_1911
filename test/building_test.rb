@@ -49,8 +49,10 @@ class BuildingTest < Minitest::Test
     @building.add_unit(@unit2)
     @building.add_unit(@unit3)
     @unit2.add_renter(@renter1)
-    assert_equal {"Spencer" => 11988}, @building.annual_breakdown
+    hash1= {"Spencer" => 11988}
+    assert_equal hash1, @building.annual_breakdown
     @unit1.add_renter(@renter2)
-    assert_equal {"Jessie" => 14400, "Spencer" => 11988}, @building.annual_breakdown
+    hash2 = {"Jessie" => 14400, "Spencer" => 11988}
+    assert_equal hash2, @building.annual_breakdown
   end
 end

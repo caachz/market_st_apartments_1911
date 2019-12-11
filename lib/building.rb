@@ -20,4 +20,12 @@ class Building
     occupied_units = rents_sorted.reject{|unit| unit.renter == nil}
     occupied_units.last.renter
   end
+
+  def annual_breakdown
+    occupied_units = @units.reject{|unit| unit.renter == nil}
+    annual_breakdown_hash = occupied_units.inject({}) do |hash, unit|
+      annual_cost = unit.monthly_rent * 12
+      hash.merge(unit.renter.name => annual_cost)
+    end
+  end
 end
