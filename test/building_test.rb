@@ -13,6 +13,7 @@ class BuildingTest < Minitest::Test
     @unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
     @unit4 = Apartment.new({number: "D4", monthly_rent: 1500, bathrooms: 3, bedrooms: 2})
     @renter1 = Renter.new("Spencer")
+    @renter2 = Renter.new("Jessie")
     @renter3 = Renter.new("Max")
   end
 
@@ -41,5 +42,15 @@ class BuildingTest < Minitest::Test
     assert_equal @renter1, @building.renter_with_highest_rent
     @unit3.add_renter(@renter3)
     assert_equal @renter1, @building.renter_with_highest_rent
+  end
+
+  def test_it_returns_an_annual_breakdown_for_each_renter
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+    @building.add_unit(@unit3)
+    @unit2.add_renter(@renter1)
+    assert_equal {"Spencer" => 11988}, @building.annual_breakdown
+    @unit1.add_renter(@renter2)
+    assert_equal {"Jessie" => 14400, "Spencer" => 11988}, @building.annual_breakdown
   end
 end
