@@ -11,8 +11,7 @@ class Building
   end
 
   def average_rent
-    sum_monthly_rent = @units.inject(0) { |sum, unit| sum + unit.monthly_rent.to_f}
-    average_monthly_rent = sum_monthly_rent / @units.count
+    sum_monthly_rent = @units.inject(0) { |sum, unit| sum + unit.monthly_rent}.to_f / @units.count
   end
 
   def renter_with_highest_rent
