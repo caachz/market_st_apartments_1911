@@ -15,13 +15,15 @@ class Building
   end
 
   def renter_with_highest_rent
-    rents_sorted = @units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}
-    occupied_units = rents_sorted.reject{|unit| unit.renter == nil}
-    occupied_units.last.renter
+    rents_sorted = occupied_units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}
+    rents_sorted.last.renter    
+  end
+
+  def occupied_units
+    occupied_units = @units.reject{|unit| unit.renter == nil}
   end
 
   def annual_breakdown
-    occupied_units = @units.reject{|unit| unit.renter == nil}
     annual_breakdown_hash = occupied_units.inject({}) do |hash, unit|
       annual_cost = unit.monthly_rent * 12
       hash.merge(unit.renter.name => annual_cost)
