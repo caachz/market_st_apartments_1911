@@ -19,7 +19,7 @@ class Building
   end
 
   def occupied_units
-    occupied_units = @units.reject{|unit| unit.renter == nil}
+    @units.reject{|unit| unit.renter == nil}
   end
 
   def annual_breakdown
