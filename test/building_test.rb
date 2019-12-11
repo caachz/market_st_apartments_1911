@@ -55,4 +55,15 @@ class BuildingTest < Minitest::Test
     hash2 = {"Jessie" => 14400, "Spencer" => 11988}
     assert_equal hash2, @building.annual_breakdown
   end
+
+  def test_occupied_units_returns_array_with_no_unoccpied_units
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+    @building.add_unit(@unit3)
+    @unit2.add_renter(@renter1)
+    @unit1.add_renter(@renter2)
+    @building.occupied_units.each do |unit|
+      refute_nil unit.renter
+    end
+  end
 end
