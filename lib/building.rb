@@ -11,6 +11,7 @@ class Building
   end
 
   def average_rent
-    @units.inject(0) { |sum, unit| require "pry"; binding.pry}
+    sum_monthly_rent = @units.inject(0) { |sum, unit| sum + unit.monthly_rent.to_f}
+    average_monthly_rent = sum_monthly_rent / @units.count
   end
 end
