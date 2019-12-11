@@ -23,7 +23,7 @@ class Building
   end
 
   def annual_breakdown
-    annual_breakdown_hash = occupied_units.inject({}) do |hash, unit|
+    occupied_units.inject({}) do |hash, unit|
       annual_cost = unit.monthly_rent * 12
       hash.merge(unit.renter.name => annual_cost)
     end
