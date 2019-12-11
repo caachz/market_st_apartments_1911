@@ -11,11 +11,11 @@ class Building
   end
 
   def average_rent
-    sum_monthly_rent = @units.inject(0) { |sum, unit| sum + unit.monthly_rent}.to_f / @units.count
+    @units.inject(0) { |sum, unit| sum + unit.monthly_rent}.to_f / @units.count
   end
 
   def renter_with_highest_rent
-    occupied_units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}.last.renter    
+    occupied_units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}.last.renter
   end
 
   def occupied_units
