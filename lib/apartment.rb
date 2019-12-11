@@ -1,1 +1,2 @@
-
+class Apartment
+end
