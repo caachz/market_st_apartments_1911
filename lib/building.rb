@@ -16,6 +16,8 @@ class Building
   end
 
   def renter_with_highest_rent
-    highest_rent_payer = @units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}
+    rents_sorted = @units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}
+    occupied_units = rents_sorted.reject{|unit| unit.renter == nil}
+    occupied_units.last.renter
   end
 end
