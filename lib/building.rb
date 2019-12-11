@@ -15,8 +15,7 @@ class Building
   end
 
   def renter_with_highest_rent
-    rents_sorted = occupied_units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}
-    rents_sorted.last.renter    
+    occupied_units.sort {|a, b| a.monthly_rent <=> b.monthly_rent}.last.renter    
   end
 
   def occupied_units
